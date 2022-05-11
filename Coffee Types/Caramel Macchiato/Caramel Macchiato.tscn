@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Coffee Types/General Coffee.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Coffee Types/Caramel Macchiato/Caramel Macchiato.png" type="Texture" id=2]
+
+[node name="Caramel Macchiato" instance=ExtResource( 1 )]
+sprite_texture = ExtResource( 2 )
+
+[node name="General Sprite" parent="." index="0"]
+position = Vector2( 0, -264 )
+texture = ExtResource( 2 )

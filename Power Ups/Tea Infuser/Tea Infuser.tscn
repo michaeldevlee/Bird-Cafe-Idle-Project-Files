@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Power Ups/Tool.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Coffee Types/Chamomile Tea/Chamomile Tea.tres" type="Resource" id=2]
+[ext_resource path="res://Power Ups/Tea Infuser/Tea Infuser.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
+radius = 50.0
+
+[node name="Tea Infuser" instance=ExtResource( 1 )]
+drink_resource = ExtResource( 2 )
+quality_requirements = {
+"AVERAGE_QUALITY": 120,
+"AWESOME_QUALITY": 320,
+"GOOD_QUALITY": 200
+}
+efficiency_requirements = {
+"LEVEL_1": 20,
+"LEVEL_2": 23,
+"LEVEL_3": 26,
+"LEVEL_4": 29,
+"LEVEL_5": 32
+}
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="Interact Area" index="0"]
+shape = SubResource( 1 )

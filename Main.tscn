@@ -1,0 +1,632 @@
+[gd_scene load_steps=44 format=2]
+
+[ext_resource path="res://Background/Background.png" type="Texture" id=1]
+[ext_resource path="res://Background/Customer Dining Area.png" type="Texture" id=2]
+[ext_resource path="res://Interactables/Coffee Bean.png" type="Texture" id=3]
+[ext_resource path="res://Interactables/Coffee Bean.gd" type="Script" id=4]
+[ext_resource path="res://Bean Timer.gd" type="Script" id=5]
+[ext_resource path="res://Power Ups/Coffee Dripper/Coffee Dripper.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Coffee Counter.gd" type="Script" id=7]
+[ext_resource path="res://Power Ups/French Press/French Press.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Accumulation Timers.gd" type="Script" id=9]
+[ext_resource path="res://UI.gd" type="Script" id=10]
+[ext_resource path="res://Coffee Bean Timer.gd" type="Script" id=11]
+[ext_resource path="res://Main.gd" type="Script" id=12]
+[ext_resource path="res://Power Ups/Milk Steamer/Milk Steamer.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Power Ups/Mocha Pot/Mocha Pot.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Power Ups/Tea Infuser/Tea Infuser.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Power Ups/Ice Machine/Ice Machine.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Power Ups/Cooking Mixer/Cooking Mixer.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Renovate Button.gd" type="Script" id=18]
+[ext_resource path="res://Background/Customer Counter.png" type="Texture" id=19]
+[ext_resource path="res://Font/Louis George Cafe.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://Background/Worker Counter.png" type="Texture" id=21]
+[ext_resource path="res://UI/Star.png" type="Texture" id=22]
+[ext_resource path="res://Animations/Atmosphere/Workers Working_1.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Animations/Atmosphere/Workers Working_2.tscn" type="PackedScene" id=24]
+[ext_resource path="res://UI/Coffee Bean Count.png" type="Texture" id=25]
+[ext_resource path="res://UI/UI BG.png" type="Texture" id=26]
+[ext_resource path="res://UI/Increase Arrow.png" type="Texture" id=27]
+[ext_resource path="res://UI/Cash Count.png" type="Texture" id=28]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 72.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "Pressed"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1.1, 1.1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 136, 64 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Upgrade"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.33333, 1.33333 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 136, 64 ) ]
+}
+
+[sub_resource type="DynamicFont" id=11]
+size = 30
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 30
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 20 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 1, 0 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 20.0
+scale = 2.0
+
+[sub_resource type="DynamicFont" id=14]
+size = 30
+outline_size = 2
+font_data = ExtResource( 20 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Pressed"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 1.1, 1.1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 64.4981
+
+[sub_resource type="DynamicFont" id=15]
+size = 50
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 50
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 20 )
+
+[sub_resource type="Environment" id=13]
+background_mode = 4
+glow_enabled = true
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Background" type="Node2D" parent="YSort"]
+
+[node name="Background" type="Sprite" parent="YSort/Background"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Worker Counter" type="Sprite" parent="YSort/Background"]
+position = Vector2( 0, 320 )
+texture = ExtResource( 21 )
+centered = false
+
+[node name="Dining Area" type="Sprite" parent="YSort/Background"]
+position = Vector2( 1416, 480 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Working Animations" type="Node2D" parent="YSort/Background"]
+
+[node name="Workers Working_2" parent="YSort/Background/Working Animations" instance=ExtResource( 24 )]
+position = Vector2( 198, 16 )
+
+[node name="Blue Workers Working_1" parent="YSort/Background/Working Animations" instance=ExtResource( 23 )]
+position = Vector2( -8, 120 )
+
+[node name="Workers" type="Node2D" parent="YSort/Background"]
+
+[node name="Click Areas" type="Node2D" parent="YSort"]
+
+[node name="Coffee Bean" type="Node2D" parent="YSort/Click Areas"]
+position = Vector2( -32, 40 )
+script = ExtResource( 4 )
+
+[node name="Coffee Bean" type="Sprite" parent="YSort/Click Areas/Coffee Bean"]
+position = Vector2( 136, 64 )
+texture = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="YSort/Click Areas/Coffee Bean/Coffee Bean"]
+position = Vector2( 1.52588e-05, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Click Areas/Coffee Bean/Coffee Bean/Area2D"]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YSort/Click Areas/Coffee Bean/Coffee Bean"]
+playback_speed = 3.0
+anims/Pressed = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+anims/Upgrade = SubResource( 10 )
+
+[node name="Bean Text" type="Label" parent="YSort/Click Areas/Coffee Bean"]
+margin_left = 200.0
+margin_top = 40.0
+margin_right = 422.0
+margin_bottom = 75.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Beans Per Click : "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Beans Per Click" type="Label" parent="YSort/Click Areas/Coffee Bean"]
+margin_left = 432.0
+margin_top = 40.0
+margin_right = 542.0
+margin_bottom = 75.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Passive Bean Test" type="Label" parent="YSort/Click Areas/Coffee Bean"]
+margin_left = 504.0
+margin_top = 40.0
+margin_right = 726.0
+margin_bottom = 75.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Passive Beancome: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Passive Beancome" type="Label" parent="YSort/Click Areas/Coffee Bean"]
+margin_left = 768.0
+margin_top = 40.0
+margin_right = 878.0
+margin_bottom = 75.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="YSort/Click Areas/Coffee Bean"]
+position = Vector2( 136, 88 )
+emitting = false
+amount = 20
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+process_material = SubResource( 9 )
+texture = ExtResource( 27 )
+
+[node name="Tools" type="Node2D" parent="YSort/Click Areas"]
+position = Vector2( -384, 128 )
+
+[node name="Coffee Dripper" parent="YSort/Click Areas/Tools" instance=ExtResource( 6 )]
+position = Vector2( 648, 171 )
+
+[node name="French Press" parent="YSort/Click Areas/Tools" instance=ExtResource( 8 )]
+position = Vector2( 976, 164 )
+efficiency_requirements = {
+"LEVEL_1": 25,
+"LEVEL_2": 35,
+"LEVEL_3": 50,
+"LEVEL_4": 75,
+"LEVEL_5": 100
+}
+
+[node name="Milk Steamer" parent="YSort/Click Areas/Tools" instance=ExtResource( 13 )]
+position = Vector2( 1288, 178 )
+efficiency_requirements = {
+"LEVEL_1": 30,
+"LEVEL_2": 40,
+"LEVEL_3": 50,
+"LEVEL_4": 60,
+"LEVEL_5": 80
+}
+
+[node name="Mocha Pot" parent="YSort/Click Areas/Tools" instance=ExtResource( 14 )]
+position = Vector2( 1200, 516 )
+
+[node name="Tea Infuser" parent="YSort/Click Areas/Tools" instance=ExtResource( 15 )]
+position = Vector2( 920, 368 )
+quality_requirements = {
+"AVERAGE_QUALITY": 120,
+"AWESOME_QUALITY": 320,
+"GOOD_QUALITY": 200
+}
+efficiency_requirements = {
+"LEVEL_1": 20,
+"LEVEL_2": 23,
+"LEVEL_3": 26,
+"LEVEL_4": 29,
+"LEVEL_5": 32
+}
+
+[node name="Cooking Mixer" parent="YSort/Click Areas/Tools" instance=ExtResource( 17 )]
+position = Vector2( 496, 358 )
+
+[node name="Ice Machine" parent="YSort/Click Areas/Tools" instance=ExtResource( 16 )]
+position = Vector2( 792, 534 )
+
+[node name="Renovate Button" type="Node2D" parent="YSort/Click Areas"]
+position = Vector2( 104, 304 )
+
+[node name="Renovate Button" type="Sprite" parent="YSort/Click Areas/Renovate Button"]
+texture = ExtResource( 22 )
+script = ExtResource( 18 )
+
+[node name="Label" type="Label" parent="YSort/Click Areas/Renovate Button/Renovate Button"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -102.0
+margin_top = -85.0
+margin_right = -9.0
+margin_bottom = -21.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 14 )
+text = "2000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YSort/Click Areas/Renovate Button/Renovate Button"]
+playback_speed = 3.0
+anims/Pressed = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="YSort/Click Areas/Renovate Button/Renovate Button"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Click Areas/Renovate Button/Renovate Button/Area2D"]
+shape = SubResource( 4 )
+
+[node name="Foreground" type="Node2D" parent="YSort"]
+
+[node name="Customer Facing Counter" type="Sprite" parent="YSort/Foreground"]
+position = Vector2( 0, 296 )
+texture = ExtResource( 19 )
+centered = false
+
+[node name="Coffee Counter" type="ColorRect" parent="YSort/Foreground"]
+margin_left = 10.0
+margin_top = 984.0
+margin_right = 1162.0
+margin_bottom = 1016.0
+color = Color( 1, 1, 1, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Accumulation Timers" type="Node" parent="YSort"]
+script = ExtResource( 9 )
+
+[node name="Customer Timer" type="Timer" parent="YSort/Accumulation Timers"]
+wait_time = 20.0
+autostart = true
+script = ExtResource( 5 )
+
+[node name="Money Timer" type="Timer" parent="YSort/Accumulation Timers"]
+
+[node name="Coffee Bean Timer" type="Timer" parent="YSort/Accumulation Timers"]
+autostart = true
+script = ExtResource( 11 )
+
+[node name="Customer Time" type="Label" parent="YSort/Accumulation Timers"]
+margin_left = 1160.0
+margin_top = 88.0
+margin_right = 1218.0
+margin_bottom = 145.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Customer Time Text" type="Label" parent="YSort/Accumulation Timers"]
+margin_left = 920.0
+margin_top = 24.0
+margin_right = 978.0
+margin_bottom = 81.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "Customers will 
+pick up in:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Customer Time Text2" type="Label" parent="YSort/Accumulation Timers"]
+margin_left = 1224.0
+margin_top = 88.0
+margin_right = 1558.0
+margin_bottom = 205.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "seconds"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+coffee_counter = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Coffee Counter2/Coffee Count")
+money_counter = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Money2/Money Count")
+stars_path = NodePath("MarginContainer/VBoxContainer/Stars")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 40
+custom_constants/margin_top = 40
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+margin_left = 10.0
+margin_top = 40.0
+margin_right = 1880.0
+margin_bottom = 1070.0
+mouse_filter = 2
+
+[node name="Stars" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
+margin_right = 1870.0
+margin_bottom = 106.0
+mouse_filter = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Star" type="TextureRect" parent="UI/MarginContainer/VBoxContainer/Stars"]
+margin_left = 1759.0
+margin_right = 1870.0
+margin_bottom = 106.0
+texture = ExtResource( 22 )
+
+[node name="Star2" type="TextureRect" parent="UI/MarginContainer/VBoxContainer/Stars"]
+visible = false
+margin_left = 1602.0
+margin_right = 1666.0
+margin_bottom = 64.0
+texture = ExtResource( 22 )
+
+[node name="Star3" type="TextureRect" parent="UI/MarginContainer/VBoxContainer/Stars"]
+visible = false
+margin_left = 1670.0
+margin_right = 1734.0
+margin_bottom = 64.0
+texture = ExtResource( 22 )
+
+[node name="Star4" type="TextureRect" parent="UI/MarginContainer/VBoxContainer/Stars"]
+visible = false
+margin_left = 1738.0
+margin_right = 1802.0
+margin_bottom = 64.0
+texture = ExtResource( 22 )
+
+[node name="Star5" type="TextureRect" parent="UI/MarginContainer/VBoxContainer/Stars"]
+visible = false
+margin_left = 1806.0
+margin_right = 1870.0
+margin_bottom = 64.0
+texture = ExtResource( 22 )
+
+[node name="Star6" type="TextureRect" parent="UI/MarginContainer/VBoxContainer/Stars"]
+visible = false
+margin_left = 1806.0
+margin_right = 1870.0
+margin_bottom = 64.0
+texture = ExtResource( 22 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
+margin_top = 110.0
+margin_right = 1870.0
+margin_bottom = 248.0
+mouse_filter = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Coffee Counter" type="TextureRect" parent="UI/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 1590.0
+margin_right = 1728.0
+margin_bottom = 138.0
+texture = ExtResource( 25 )
+
+[node name="Coffee Counter2" type="TextureRect" parent="UI/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 1732.0
+margin_right = 1870.0
+margin_bottom = 138.0
+texture = ExtResource( 26 )
+
+[node name="Coffee Count" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer3/Coffee Counter2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
+margin_top = 252.0
+margin_right = 1870.0
+margin_bottom = 390.0
+mouse_filter = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Money" type="TextureRect" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 1590.0
+margin_right = 1728.0
+margin_bottom = 138.0
+texture = ExtResource( 28 )
+
+[node name="Money2" type="TextureRect" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 1732.0
+margin_right = 1870.0
+margin_bottom = 138.0
+texture = ExtResource( 26 )
+
+[node name="Money Count" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2/Money2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="UI"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 13 )
+
+[connection signal="input_event" from="YSort/Click Areas/Coffee Bean/Coffee Bean/Area2D" to="YSort/Click Areas/Coffee Bean" method="_on_Area2D_input_event"]
+[connection signal="input_event" from="YSort/Click Areas/Renovate Button/Renovate Button/Area2D" to="YSort/Click Areas/Renovate Button/Renovate Button" method="_on_Area2D_input_event"]

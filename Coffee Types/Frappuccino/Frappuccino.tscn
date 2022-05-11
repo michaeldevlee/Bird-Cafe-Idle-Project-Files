@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Coffee Types/General Coffee.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Coffee Types/Frappuccino/Frappuccino.png" type="Texture" id=2]
+
+[node name="Frappuccino" instance=ExtResource( 1 )]
+sprite_texture = ExtResource( 2 )
+
+[node name="General Sprite" parent="." index="0"]
+position = Vector2( -64, -240 )
+texture = ExtResource( 2 )

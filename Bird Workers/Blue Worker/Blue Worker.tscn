@@ -1,0 +1,136 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Bird Workers/Bird Worker.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Bird Workers/Blue Worker/Blue Eyes.png" type="Texture" id=2]
+[ext_resource path="res://Bird Workers/Blue Worker/Blue Eyes Sad.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Worried"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 48, 80 ), Vector2( 48, 80 ), Vector2( 48, 73 ), Vector2( 48, 81 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 88, 80 ), Vector2( 88, 77 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/Beak:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 88, 17 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Head/Eyes:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 56, 32 ), Vector2( 56, 29 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Head/Hair:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -40.75, -56 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Head/Eyes:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Arm:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 80, 168 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Arm:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1, 0.6, 0.829892 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -51.3388, -82.5714, -76.4588, -82.9341 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Head/Eyes/Eyebrow:texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Head/Eyes/Eyebrow:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -8, -8 ), Vector2( -5, -24 ), Vector2( -5, -24 ), Vector2( -5.375, -13 ) ]
+}
+
+[node name="Blue Worker" instance=ExtResource( 1 )]
+
+[node name="AnimationPlayer" parent="." index="9"]
+autoplay = "Talking"
+playback_speed = 2.0
+anims/Worried = SubResource( 1 )
